@@ -30,7 +30,7 @@ This repository contains my work on the **SSM Workshop** with ScalismoLab, focus
 2. **Running the Code**
    - Clone this repository:  
      `git clone https://github.com/Malek-Dinari/SSM-Workshop-ScalismoLab.git`
-   - Navigate to the `src` folder and run the Scala scripts using SBT.
+   - Navigate to the `src` folder and copy code from Scala scripts to run the said scripts using SBT.
 
 3. **Datasets**
    The `datasets-TP/` folder contains the data needed to perform the experiments. The mesh files and landmark data will be used in the workshop exercises.
