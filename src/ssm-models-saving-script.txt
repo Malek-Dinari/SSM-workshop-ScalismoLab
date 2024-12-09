@@ -1,0 +1,21 @@
+// Créer un modèle statistique à partir du répertoire de maillages non alignés
+val referenceNonAligned: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/nonAlignedFaces-TP/1.stl")).get
+val dcNonAligned = DataCollection.fromMeshDirectory(referenceNonAligned, new File("datasets-TP/nonAlignedFaces-TP/"))._1.get
+val modelNonAligned = StatisticalMeshModel.createUsingPCA(dcNonAligned).get
+show(modelNonAligned, "Statistical Model Non-Aligned") // Affiche le modèle dans l'UI
+StatismoIO.writeStatismoMeshModel(model1,new File("datasets-TP/TP_nonaligned.h5")) // Sauvegarde le modèle
+
+// Calcul des valeurs propres pour les maillages non alignés
+val eigenvaluesNonAligned = modelNonAligned.gp.variance
+println(s"Valeurs propres du modèle non aligné : $eigenvaluesNonAligned")
+
+// Créer un modèle statistique à partir du répertoire de maillages alignés
+val referenceAligned: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/AlignedFaces-TP/1.stl")).get
+val dcAligned = DataCollection.fromMeshDirectory(referenceAligned, new File("datasets-TP/AlignedFaces-TP/"))._1.get
+val modelAligned = StatisticalMeshModel.createUsingPCA(dcAligned).get
+show(modelAligned, "Statistical Model Aligned") // Affiche le modèle dans l'UI
+StatismoIO.writeStatismoMeshModel(model2, new File("datasets-TP/AlignedFaces-TP_model.h5")) // Sauvegarde le modèle
+
+// Calcul des valeurs propres pour les maillages alignés
+val eigenvaluesAligned = modelAligned.gp.variance
+println(s"Valeurs propres du modèle aligné : $eigenvaluesAligned")
