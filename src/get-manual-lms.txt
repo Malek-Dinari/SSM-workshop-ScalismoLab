@@ -1,0 +1,34 @@
+
+for(i<- 1 to 5){
+val mesh : TriangleMesh = MeshIO.readMesh(new File(
+"datasets-TP/nonAlignedFaces-TP/"+i+".stl")).get
+show(mesh,"face"+i)
+} // Affichage et création des objets statiques (instances)
+//dans le User Interface (UI)
+
+val rotation : RotationTransform[_3D] = RotationTransform(0f,3.14f,0f)
+val translation = TranslationTransform[_3D](Vector(50,0,0))
+def composedTransformation(p: Point[_3D]) : Point[_3D] = translation(rotation(p))
+
+
+val mesh : TriangleMesh = MeshIO.readMesh(new File(
+"datasets-TP/nonAlignedFaces-TP/5.stl")).get
+show(mesh,"face5")
+val rigid : TriangleMesh = mesh.transform(rotation)
+show(rigid,"rotatedface5")
+val rigid2 : TriangleMesh = rigid.transform(translation)
+show(rigid2,"translatedrotatedface5")
+val rigid3 = mesh.transform(composedTransformation)
+show(rigid3,"composedface5")
+
+
+
+// lecture de landmarks d’apr`es un fichier *.json :
+val originalLms = LandmarkIO.readLandmarksJson[_3D](new File("datasets-TP/nonAlignedFaces-TP/L-face1.json")).get
+// r´ecup´eration de landmarks d´efinis manuellement sur "instance1"
+// dans l’UI (landmarks A,B,C,...) :
+val originalLms = getLandmarksOf("face1").get
+
+// visualiser des landmarks issus d’un fichier json sur son maillage (en les ajoutant à
+// l’UI)
+refLms.map(p => addLandmarksTo(Seq(Landmark(p.id,p.point)),"face"))
