@@ -1,0 +1,12 @@
+val hausdorffAfter = MeshMetrics.hausdorffDistance(referenceMesh, alignedMobileMesh)
+val avgDistanceAfter = MeshMetrics.avgDistance(referenceMesh, alignedMobileMesh)
+println(s"Distance de Hausdorff après recalage : $hausdorffAfter")
+println(s"Distance moyenne après recalage : $avgDistanceAfter")
+
+
+
+//résultat: Distances de Hausdorff:
+//  hausdorffAfter: Double = 17.974359688210644
+//  avgDistanceAfter: Double = 3.515766199168511
+//  Distance de Hausdorff après recalage : 17.974359688210644
+//  Distance moyenne après recalage : 3.515766199168511
