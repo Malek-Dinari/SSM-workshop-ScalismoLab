@@ -1,0 +1,215 @@
+
+
+// Load reference and mobile meshes
+val referenceMesh: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/nonAlignedFaces-TP/1.stl")).get
+show(referenceMesh, "reference")
+
+val mobileMesh: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/nonAlignedFaces-TP/5.stl")).get
+show(mobileMesh, "mobile")
+
+// Load landmarks for reference and mobile objects
+val referenceLms = LandmarkIO.readLandmarksJson[_3D](new File("datasets-TP/nonAlignedFaces-TP/L-face1.json")).get
+val mobileLms = LandmarkIO.readLandmarksJson[_3D](new File("datasets-TP/nonAlignedFaces-TP/L-face2.json")).get
+
+// Visualize the landmarks on the corresponding meshes
+referenceLms.map(p => addLandmarksTo(Seq(Landmark(p.id, p.point)), "reference"))
+mobileLms.map(p => addLandmarksTo(Seq(Landmark(p.id, p.point)), "mobile"))
+
+
+
+
+val bestTransform = LandmarkRegistration.rigid3DLandmarkRegistration(
+mobileLms,referenceLms)
+// on envoie rigid sur original.
+
+// Apply the transformation
+val alignedMobileMesh = mobileMesh.transform(bestTransform)
+show(alignedMobileMesh, "alignedMobile")
+
+// Optionally save the aligned mesh
+MeshIO.writeMesh(alignedMobileMesh, new File("datasets-TP/AlignedFaces-TP/aligned-face5.stl"))
+
+
+//distances de Hausdorff: aligner 5 --> 1
+val hausdorffAfter = MeshMetrics.hausdorffDistance(referenceMesh, alignedMobileMesh)
+val avgDistanceAfter = MeshMetrics.avgDistance(referenceMesh, alignedMobileMesh)
+println(s"Distance de Hausdorff après recalage : $hausdorffAfter")
+println(s"Distance moyenne après recalage : $avgDistanceAfter")
+
+
+
+
+
+
+
+//***
+
+
+
+// Load reference and mobile meshes
+val referenceMesh: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/nonAlignedFaces-TP/1.stl")).get
+show(referenceMesh, "reference")
+
+val mobileMesh: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/nonAlignedFaces-TP/2.stl")).get
+show(mobileMesh, "mobile")
+
+// Load landmarks for reference and mobile objects
+val referenceLms = LandmarkIO.readLandmarksJson[_3D](new File("datasets-TP/nonAlignedFaces-TP/L-face1.json")).get
+val mobileLms = LandmarkIO.readLandmarksJson[_3D](new File("datasets-TP/nonAlignedFaces-TP/L-face2.json")).get
+
+// Visualize the landmarks on the corresponding meshes
+referenceLms.map(p => addLandmarksTo(Seq(Landmark(p.id, p.point)), "reference"))
+mobileLms.map(p => addLandmarksTo(Seq(Landmark(p.id, p.point)), "mobile"))
+
+
+
+
+val bestTransform = LandmarkRegistration.rigid3DLandmarkRegistration(
+mobileLms,referenceLms)
+// on envoie rigid sur original.
+
+// Apply the transformation
+val alignedMobileMesh = mobileMesh.transform(bestTransform)
+show(alignedMobileMesh, "alignedMobile")
+
+// Optionally save the aligned mesh
+MeshIO.writeMesh(alignedMobileMesh, new File("datasets-TP/AlignedFaces-TP/aligned-face2.stl"))
+
+
+//distances de Hausdorff: aligner 2 --> 1
+val hausdorffAfter = MeshMetrics.hausdorffDistance(referenceMesh, alignedMobileMesh)
+val avgDistanceAfter = MeshMetrics.avgDistance(referenceMesh, alignedMobileMesh)
+println(s"Distance de Hausdorff après recalage : $hausdorffAfter")
+println(s"Distance moyenne après recalage : $avgDistanceAfter")
+
+
+
+//***
+
+
+
+// Load reference and mobile meshes
+val referenceMesh: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/nonAlignedFaces-TP/1.stl")).get
+show(referenceMesh, "reference")
+
+val mobileMesh: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/nonAlignedFaces-TP/3.stl")).get
+show(mobileMesh, "mobile")
+
+// Load landmarks for reference and mobile objects
+val referenceLms = LandmarkIO.readLandmarksJson[_3D](new File("datasets-TP/nonAlignedFaces-TP/L-face1.json")).get
+val mobileLms = LandmarkIO.readLandmarksJson[_3D](new File("datasets-TP/nonAlignedFaces-TP/L-face3.json")).get
+
+// Visualize the landmarks on the corresponding meshes
+referenceLms.map(p => addLandmarksTo(Seq(Landmark(p.id, p.point)), "reference"))
+mobileLms.map(p => addLandmarksTo(Seq(Landmark(p.id, p.point)), "mobile"))
+
+
+
+
+val bestTransform = LandmarkRegistration.rigid3DLandmarkRegistration(
+mobileLms,referenceLms)
+// on envoie rigid sur original.
+
+// Apply the transformation
+val alignedMobileMesh = mobileMesh.transform(bestTransform)
+show(alignedMobileMesh, "alignedMobile")
+
+// Optionally save the aligned mesh
+MeshIO.writeMesh(alignedMobileMesh, new File("datasets-TP/AlignedFaces-TP/aligned-face3.stl"))
+
+
+//distances de Hausdorff: aligner 3 --> 1
+val hausdorffAfter = MeshMetrics.hausdorffDistance(referenceMesh, alignedMobileMesh)
+val avgDistanceAfter = MeshMetrics.avgDistance(referenceMesh, alignedMobileMesh)
+println(s"Distance de Hausdorff après recalage : $hausdorffAfter")
+println(s"Distance moyenne après recalage : $avgDistanceAfter")
+
+
+
+//***
+
+
+// Load reference and mobile meshes
+val referenceMesh: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/nonAlignedFaces-TP/1.stl")).get
+show(referenceMesh, "reference")
+
+val mobileMesh: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/nonAlignedFaces-TP/4.stl")).get
+show(mobileMesh, "mobile")
+
+// Load landmarks for reference and mobile objects
+val referenceLms = LandmarkIO.readLandmarksJson[_3D](new File("datasets-TP/nonAlignedFaces-TP/L-face1.json")).get
+val mobileLms = LandmarkIO.readLandmarksJson[_3D](new File("datasets-TP/nonAlignedFaces-TP/L-face4.json")).get
+
+// Visualize the landmarks on the corresponding meshes
+referenceLms.map(p => addLandmarksTo(Seq(Landmark(p.id, p.point)), "reference"))
+mobileLms.map(p => addLandmarksTo(Seq(Landmark(p.id, p.point)), "mobile"))
+
+
+
+
+val bestTransform = LandmarkRegistration.rigid3DLandmarkRegistration(
+mobileLms,referenceLms)
+// on envoie rigid sur original.
+
+// Apply the transformation
+val alignedMobileMesh = mobileMesh.transform(bestTransform)
+show(alignedMobileMesh, "alignedMobile")
+
+// Optionally save the aligned mesh
+MeshIO.writeMesh(alignedMobileMesh, new File("datasets-TP/AlignedFaces-TP/aligned-face4.stl"))
+
+
+//distances de Hausdorff: aligner 4 --> 1
+val hausdorffAfter = MeshMetrics.hausdorffDistance(referenceMesh, alignedMobileMesh)
+val avgDistanceAfter = MeshMetrics.avgDistance(referenceMesh, alignedMobileMesh)
+println(s"Distance de Hausdorff après recalage : $hausdorffAfter")
+println(s"Distance moyenne après recalage : $avgDistanceAfter")
+
+
+
+//***
+
+
+
+// Load reference and mobile meshes
+val referenceMesh: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/nonAlignedFaces-TP/1.stl")).get
+show(referenceMesh, "reference")
+
+val mobileMesh: TriangleMesh = MeshIO.readMesh(new File("datasets-TP/nonAlignedFaces-TP/1.stl")).get
+show(mobileMesh, "mobile")
+
+// Load landmarks for reference and mobile objects
+val referenceLms = LandmarkIO.readLandmarksJson[_3D](new File("datasets-TP/nonAlignedFaces-TP/L-face1.json")).get
+val mobileLms = LandmarkIO.readLandmarksJson[_3D](new File("datasets-TP/nonAlignedFaces-TP/L-face1.json")).get
+
+// Visualize the landmarks on the corresponding meshes
+referenceLms.map(p => addLandmarksTo(Seq(Landmark(p.id, p.point)), "reference"))
+mobileLms.map(p => addLandmarksTo(Seq(Landmark(p.id, p.point)), "mobile"))
+
+
+
+
+val bestTransform = LandmarkRegistration.rigid3DLandmarkRegistration(
+mobileLms,referenceLms)
+// on envoie rigid sur original.
+
+// Apply the transformation
+val alignedMobileMesh = mobileMesh.transform(bestTransform)
+show(alignedMobileMesh, "alignedMobile")
+
+// Optionally save the aligned mesh
+MeshIO.writeMesh(alignedMobileMesh, new File("datasets-TP/AlignedFaces-TP/aligned-face1.stl"))
+
+
+//distances de Hausdorff: aligner 1 --> 1
+val hausdorffAfter = MeshMetrics.hausdorffDistance(referenceMesh, alignedMobileMesh)
+val avgDistanceAfter = MeshMetrics.avgDistance(referenceMesh, alignedMobileMesh)
+println(s"Distance de Hausdorff après recalage : $hausdorffAfter")
+println(s"Distance moyenne après recalage : $avgDistanceAfter")
+
+
+
+//***
+
+
+
